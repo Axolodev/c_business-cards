@@ -10,10 +10,13 @@ import TextBlockMesh from "./TextBlockMesh";
 
 // We import the mesh
 import QRCodeMesh from "./QRCodeMesh";
+import useMeshStore from "@/stores/meshStore";
 
 const RTFContainer = () => {
   // We destructure the form values
   const { card, textBlock, qrCode } = useFormStateStore((s) => s.form);
+  // Add this line
+  const setJointMesh = useMeshStore((s) => s.setJointMesh);
 
   return (
     <div className="h-full w-full">
@@ -21,7 +24,7 @@ const RTFContainer = () => {
         <OrbitControls makeDefault />
 
         <directionalLight color="white" position={[0, 0, 5]} />
-        <group>
+        <group ref={setJointMesh}>
           <CardMesh cardProps={card} />
 
           <Suspense fallback={null}>
