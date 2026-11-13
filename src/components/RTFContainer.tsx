@@ -5,15 +5,15 @@ import { Canvas } from "@react-three/fiber";
 
 import useFormStateStore from "@/stores/formStore";
 import CardMesh from "./CardMesh";
-
-// We add Suspense, as Text3D suspends while the font data is loading.
-// You can read more about it here: https://drei.docs.pmnd.rs/abstractions/text3d
 import { Suspense } from "react";
 import TextBlockMesh from "./TextBlockMesh";
 
+// We import the mesh
+import QRCodeMesh from "./QRCodeMesh";
+
 const RTFContainer = () => {
-  // We destructure the textBlock values from the form state
-  const { card, textBlock } = useFormStateStore((s) => s.form);
+  // We destructure the form values
+  const { card, textBlock, qrCode } = useFormStateStore((s) => s.form);
 
   return (
     <div className="h-full w-full">
@@ -24,13 +24,18 @@ const RTFContainer = () => {
         <group>
           <CardMesh cardProps={card} />
 
-          {/** And we add the text block with Suspense without a fallback
-           * and control its visibility based on form props */}
           <Suspense fallback={null}>
             {textBlock.enabled && textBlock.content.length > 0 && (
               <TextBlockMesh textBlockProps={textBlock} cardProps={card} />
             )}
           </Suspense>
+
+          {/** And add the QR Code mesh into our group similar to how we did with
+           * the text block
+           */}
+          {qrCode.enabled && qrCode.qrContent.length > 0 && (
+            <QRCodeMesh qrCodeProps={qrCode} cardProps={card} />
+          )}
         </group>
       </Canvas>
     </div>

@@ -38,14 +38,14 @@ export const initialCardFormState: CardFormState = {
     yPosition: 14,
     thickness: 2,
     fontSize: 14,
-    content: "Name Lastname\n\nSoftware Developer",
+    content: "Name Lastname\n\nSoftware Engineer\n\nMaker",
   },
   qrCode: {
     enabled: true,
     xPosition: 20,
-    yPosition: 0,
+    yPosition: -5,
     thickness: 2,
-    moduleSize: 2,
+    moduleSize: 1.2,
     qrContent: "https://example.com/",
   },
 };
