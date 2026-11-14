@@ -44,11 +44,6 @@ export function CardForm({ className }: CardFormProps) {
           value={card.thickness}
           onValueChange={(thickness) => setCard({ thickness })}
         />
-        <NumberField
-          label="Border Radius"
-          value={card.borderRadius}
-          onValueChange={(borderRadius) => setCard({ borderRadius })}
-        />
       </fieldset>
 
       <PropertyGroup
